@@ -1,4 +1,17 @@
 Peg::Application.routes.draw do
+  get "login/delete"
+
+  get "login/create"
+  match 'login' => 'login#create'
+  #match 'login' => 'login#new', :method => :POST
+  post "login/new"
+
+  resources :admins
+
+
+  resources :images
+  root :to => 'news#index'
+
   resources :news
 
 

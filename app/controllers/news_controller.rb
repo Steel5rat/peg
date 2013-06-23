@@ -1,9 +1,11 @@
+include NewsHelper
 class NewsController < ApplicationController
   # GET /news
   # GET /news.json
   def index
-    @news = News.all
-
+    #@news = News.all
+    #ASC
+	@news = News.order("created_at DESC").paginate(:page => params[:page]) #sort & paginate
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @news }
@@ -24,10 +26,10 @@ class NewsController < ApplicationController
   # GET /news/new
   # GET /news/new.json
   def new
-    @news = News.new
-
-    respond_to do |format|
-      format.html # new.html.erb
+    @news = News.create
+    
+    respond_to do |format|      
+      format.html { redirect_to edit_news_path(@news ), :action => 'edit' } # new.html.erb
       format.json { render :json => @news }
     end
   end
@@ -35,6 +37,12 @@ class NewsController < ApplicationController
   # GET /news/1/edit
   def edit
     @news = News.find(params[:id])
+    @images = Image.where(:news_id => params[:id]).order("created_at ASC")
+    @tags = []
+    @images.each do |a|
+		@tags+=['<img'+a.id.to_s+'>']
+	end
+	
   end
 
   # POST /news

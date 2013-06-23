@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @image.name %>
+</p>
+<%= image_tag @image.picture.url, :alt => @image.name %>
+<p> Id News-Master:
+<%= @image.news_id %></p>
+<p>Self-id:
+  <%= @image.id %></p>
+<%= link_to 'Edit', edit_image_path(@image) %> |
+<%= link_to 'Back', edit_news_path(@image.news_id) %>

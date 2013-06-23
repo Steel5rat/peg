@@ -1,6 +1,28 @@
 <h1>Editing news</h1>
 
 <%= render 'form' %>
+    <div class="actions">
+  <%= link_to 'Add picture', new_image_path(:news_id => @news.id), :data => { :confirm => 'Вся несохраненная информация будет потеряна.'+
+    ' Продолжить?'} %>
+  </div>
+<table>
+  <tr>
+	<% @tags.each do |tag| %>
+    <td><%= tag %></td>
+    <% end %>
+    </tr><tr>
+    <% @images.each do |image| %>
+    <td><%= image_tag image.picture.url, :width => 80 %></td>
+    <% end %>
+  </tr>
+  <tr>
+    <% @images.each do |image| %>
+    <td><%= link_to 'Destroy', image, :method => :delete, :data => { :confirm => 'Вся несохраненная информация будет потеряна.'+
+    ' Продолжить?' } %></td>
+    <% end %>
+  </tr>
+</table>
 
 <%= link_to 'Show', @news %> |
 <%= link_to 'Back', news_index_path %>
+

@@ -10,12 +10,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130618123547) do
+ActiveRecord::Schema.define(:version => 20130622133337) do
+
+  create_table "admins", :force => true do |t|
+    t.string   "name",       :null => false
+    t.string   "email"
+    t.string   "password",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "images", :force => true do |t|
+    t.string   "name"
+    t.integer  "news_id",              :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+  end
 
   create_table "news", :force => true do |t|
     t.string   "title"
     t.text     "body"
-    t.string   "image_url"
     t.boolean  "is_important"
     t.string   "keywords"
     t.datetime "created_at",   :null => false

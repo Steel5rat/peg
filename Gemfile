@@ -9,6 +9,8 @@ gem 'sqlite3'
 
 gem 'json'
 
+gem 'will_paginate', '~> 3.0'
+gem "paperclip", "~> 2.7"
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

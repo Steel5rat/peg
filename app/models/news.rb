@@ -1,4 +1,5 @@
 class News < ActiveRecord::Base
-  attr_accessible :body, :image_url, :is_important, :keywords, :title
+  has_many :images, :dependent => :destroy
+  attr_accessible :body, :image_url, :is_important, :keywords, :title, :id
   #text, string, bool, string, string
 end
